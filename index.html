@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Astrome assessment</title>
+  <meta name="author" content="Sheik Mohammad Amjad Abbas">
+  <meta name="email" content="mohammadabbasiiit@gmail.com">
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: #f0f0f0;
+    }
+  
+    #container {
+      position: relative;
+      width: 800px;
+      height: 300px;
+      background-color: rgb(14, 14, 70);
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-around;
+      padding: 20px;
+      box-sizing: border-box;
+      margin-bottom: 20px;
+    }
+  
+    .bar {
+      flex: 1;
+      height: 100%;
+      margin: 0 0;
+      transition: height 0.4s;
+    }
+  
+    #controls {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+  
+    button {
+      padding: 12px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      color: #fff;
+      margin: 10px;
+      width: 150px;
+      box-sizing: border-box;
+    }
+  
+    #startBtn {
+      background-color: #377e37;
+    }
+  
+    #resetBtn {
+      background-color: #9400d3;
+    }
+  
+    #stopBtn {
+      background-color: #ff6347;
+    }
+  </style>
+</head>
+<body>
+
+<div id="container">
+  <div class="bar" style="background-color: #9d47ff;"></div>
+  <div class="bar" style="background-color: #ae32cd;"></div>
+  <div class="bar" style="background-color: #da30af;"></div>
+  <div class="bar" style="background-color: #e18e41;"></div>
+  <div class="bar" style="background-color: #b4d832;"></div>
+</div>
+
+<div id="controls">
+  <button id="startBtn" onclick="startAnimation()">Start</button>
+  <button id="resetBtn" onclick="resetBars()">Reset</button>
+  <button id="stopBtn" onclick="stopAnimation()">Stop</button>
+</div>
+
+<script>
+  let animationInterval;
+
+  function getRandomHeight() {
+    return Math.floor(Math.random() * 200) + 50;
+  }
+
+  function startAnimation() {
+    stopAnimation(); 
+    animationInterval = setInterval(() => {
+      document.querySelectorAll('.bar').forEach(bar => {
+        bar.style.height = `${getRandomHeight()}px`;
+      });
+    }, 500);
+  }
+
+  function stopAnimation() {
+    clearInterval(animationInterval);
+  }
+
+  function resetBars() {
+    stopAnimation();
+    document.querySelectorAll('.bar').forEach(bar => {
+      bar.style.height = '100%';
+    });
+  }
+</script>
+
+</body>
+</html>
